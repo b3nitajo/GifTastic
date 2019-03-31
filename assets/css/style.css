@@ -3,3 +3,15 @@
    color: #FFF;
    margin: auto;
 }
+
+.foodImages {
+    float: left;
+    width: 250px;
+}
+
+button {
+    background-color: #000;
+    color: #FFF;
+    width: 70px;
+    margin: 5px !Important;
+}
