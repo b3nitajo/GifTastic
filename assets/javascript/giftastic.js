@@ -1,11 +1,13 @@
 // Adding click event listen listener to all buttons
 $("button").on("click", function() {
-    // Grabbing and storing the data-animal property value from the button
-    var animal = $(this).attr("data-animal");
+    // Grabbing and storing the data-favFood property value from the button
+    var favFood = $(this).attr("data-favFood");
 
-    // Constructing a queryURL using the animal name
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-      animal + "&api_key=dc6zaTOxFJmzC&limit=10";
+    // Constructing a queryURL using the favFood name
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=jGgqEkH19SV9vhks3KcMO0PvjHILSOnS&q=" +
+    favFood + "&limit=10&offset=0&rating=G&lang=en";
+
+    //https://api.giphy.com/v1/gifs/search?api_key=jGgqEkH19SV9vhks3KcMO0PvjHILSOnS&q=food&limit=10&offset=0&rating=G&lang=en
 
     // Performing an AJAX request with the queryURL
     $.ajax({
@@ -24,22 +26,24 @@ $("button").on("click", function() {
         for (var i = 0; i < results.length; i++) {
 
           // Creating and storing a div tag
-          var animalDiv = $("<div>");
+          var favFoodDiv = $("<div>");
 
           // Creating a paragraph tag with the result item's rating
           var p = $("<p>").text("Rating: " + results[i].rating);
 
           // Creating and storing an image tag
-          var animalImage = $("<img>");
+          var favFoodImage = $("<img>");
           // Setting the src attribute of the image to a property pulled off the result item
-          animalImage.attr("src", results[i].images.fixed_height.url);
+          favFoodImage.attr("src", results[i].images.fixed_height.url);
 
-          // Appending the paragraph and image tag to the animalDiv
-          animalDiv.append(p);
-          animalDiv.append(animalImage);
+          // Appending the paragraph and image tag to the favFoodDiv
+          //var favFoodCol = $(".col");
+          favFoodDiv.append(p);
+          favFoodDiv.append(favFoodImage);
+          
 
-          // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
-          $("#gifs-appear-here").prepend(animalDiv);
+          // Prependng the favFoodDiv to the HTML page in the "#gifs-appear-here" div
+          $("#gifs-appear-here").prepend(favFoodDiv);
         }
       });
   });
