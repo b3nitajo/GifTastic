@@ -3,7 +3,7 @@ var topics = ["pizza", "chicken", "fries"];
 var userfavFoodArr = [];
 createButton(topics);
 
-// ADD LISTENER TO FAV FOOD CLICK EVENT
+// ADD LISTENER TO FAV FOOD CLICK EVENT TO TRIGGER AJAX
 $(document).on("click", ".favFoods", function () {
     var favFood = $(this).attr("data-favFood");
 
@@ -23,21 +23,21 @@ $(document).on("click", ".favFoods", function () {
 
     //ADD GIPHY TO IMAGE LIST AFTER BUTTON CLICK
         for (var i = 0; i < results.length; i++) {
-        //creating div for images
+        //CREATE DIV FOR IMAGE
           var favFoodDiv = $("<div>");
           favFoodDiv.addClass("foodImages");
           var p = $("<p>").text("Rating: " + results[i].rating);
           favFoodDiv.append(p);
-        //animation url variables
+        //ANIMATION URL VARIABLES
           var still = results[i].images.fixed_height_still.url;
           var animate = results[i].images.fixed_height.url;
-        //creating images
+        //CREATE IMAGES
           var favFoodImage = $('<img>');
           favFoodImage.attr("src", animate);
           favFoodImage.attr('data-animate', animate);
           favFoodImage.attr('data-still', still);
           favFoodImage.attr('data-state', 'animate');
-        //add images to div and add on click listener
+        //ADD IMAGE AND LISTENER TO DIV
           favFoodDiv.append(favFoodImage);
           $("#gifs-appear-here").prepend(favFoodDiv);
           favFoodImage.on('click', animateGif);
