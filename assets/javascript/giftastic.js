@@ -1,5 +1,5 @@
 // Adding click event listen listener to all buttons
-$("button").on("click", function() {
+$(".favFoods").on("click", function() {
     // Grabbing and storing the data-favFood property value from the button
     var favFood = $(this).attr("data-favFood");
 
@@ -66,7 +66,6 @@ $("#userSearch").on("click", function(event) {
     // (in addition to clicks). Prevents the page from reloading on form submit.
     event.preventDefault();
 
-    creatButton();
   
     // Empty the region associated with the articles
    // clear();
@@ -79,16 +78,15 @@ $("#userSearch").on("click", function(event) {
     $.ajax({
       url: queryURL,
       method: "GET"
-    }).then(function(response) {
-        console.log(queryURL);
-    });
+    }).then(creatButton); 
+  //  });
 });
-
 
 function creatButton() {
     var queryParams = $("#userFavFood").val().trim();
     var newButton = $('<button>');
     newButton.attr("data-favFood", queryParams);
+    newButton.attr("class", "favFoods");
     newButton.text(queryParams);
     $("#foodButtons").append(newButton);
 }
