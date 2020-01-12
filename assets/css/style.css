@@ -1,17 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+
+.topic-header{
+    font-family: "Oswald", Arial, Helvetica, sans-serif;
+}
+
+p{
+    font-family: "Oswald", Arial, Helvetica, sans-serif;
+}
+
+.card{
+    width: 250px;
+}
+
 .jumbotron{
-   background-color: #17a2b8 !important; 
-   color: #FFF;
+   background-color: #669933; 
+   color: #000;
    margin: auto;
 }
 
-.foodImages {
+img{
     float: left;
-    width: 250px;
+    width: 200px;
+    height: 200px;
 }
 
 button {
     background-color: #000;
     color: #FFF;
-    width: 70px;
+    width: auto;
     margin: 5px !Important;
+    border: none;
+    border-radius: .5em;
 }

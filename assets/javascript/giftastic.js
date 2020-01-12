@@ -1,14 +1,14 @@
 //VARIABLES
-var topics = ["pizza", "chicken", "fries"];
-var userfavFoodArr = [];
+var topics = ["tending", "Beyonce", "cats"];
+var userTopicArr = [];
 createButton(topics);
 
 // ADD LISTENER TO FAV FOOD CLICK EVENT TO TRIGGER AJAX
-$(document).on("click", ".favFoods", function () {
-    var favFood = $(this).attr("data-favFood");
+$(document).on("click", ".userTopics", function () {
+    var topic = $(this).attr("data-topic");
 
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=jGgqEkH19SV9vhks3KcMO0PvjHILSOnS&q=" +
-    favFood + "&limit=10&offset=0&rating=G&lang=en";
+    topic + "&limit=10&offset=0&rating=G&lang=en";
 
     $.ajax({
       url: queryURL,
@@ -23,24 +23,37 @@ $(document).on("click", ".favFoods", function () {
 
     //ADD GIPHY TO IMAGE LIST AFTER BUTTON CLICK
         for (var i = 0; i < results.length; i++) {
+        //CREATE COLUMN AND ROW FOR GIF IMAGE
+    
         //CREATE DIV FOR IMAGE
-          var favFoodDiv = $("<div>");
-          favFoodDiv.addClass("foodImages");
-          var p = $("<p>").text("Rating: " + results[i].rating);
-          favFoodDiv.append(p);
+          var column = $("<div>");
+          column.addClass("col-4");
+          var card = $("<div>");
+          card.addClass("card");
+          column.append(card);
+          var cardBody = $("<div>");
+          cardBody.addClass("card-body");
+          card.append(cardBody);
+          var topicDiv = $("<div>");
+          topicDiv.addClass("topicImages");
+          cardBody.append(topicDiv);
+         
+          var p = $("<p>").text("Title: " + results[i].title);
+          topicDiv.append(p);
+        
         //ANIMATION URL VARIABLES
           var still = results[i].images.fixed_height_still.url;
           var animate = results[i].images.fixed_height.url;
         //CREATE IMAGES
-          var favFoodImage = $('<img>');
-          favFoodImage.attr("src", animate);
-          favFoodImage.attr('data-animate', animate);
-          favFoodImage.attr('data-still', still);
-          favFoodImage.attr('data-state', 'animate');
+          var topicImage = $('<img>');
+          topicImage.attr("src", animate);
+          topicImage.attr('data-animate', animate);
+          topicImage.attr('data-still', still);
+          topicImage.attr('data-state', 'animate');
         //ADD IMAGE AND LISTENER TO DIV
-          favFoodDiv.append(favFoodImage);
-          $("#gifs-appear-here").prepend(favFoodDiv);
-          favFoodImage.on('click', animateGif);
+          topicDiv.append(topicImage);
+          $("#gifs-appear-here").prepend(column);
+          topicImage.on('click', animateGif);
         }
     });
 
@@ -62,24 +75,24 @@ $(document).on("click", ".favFoods", function () {
  //CREATE BUTTONS WHEN USER ENTERS A NEW FAV FOOD
 $("#userSearch").on("click", function(event) {
     event.preventDefault();
-    var userFavFood = $('#userFavFood').val().trim();
-    topics.push(userFavFood);
+    var userTopic = $('#userTopic').val().trim();
+    topics.push(userTopic);
     var userButtons = createButton(topics);
-    $("#foodButtons").append(userButtons);
-    console.log(userfavFoodArr);
-    $('#userFavFood').val('');
+    $("#topicButtons").append(userButtons);
+    console.log(userTopicArr);
+    $('#userTopic').val('');
 });
 
 //CREATE BUTTONS ON PAGE
 function createButton(arr){
-    $("#foodButtons").empty();
+    $("#topicButtons").empty();
     for (var i=0; i < arr.length; i++){
         var newButton = $('<button>');
-        newButton.attr("data-favFood", arr[i]);
-        console.log("data-favFood", arr[i]);
-        newButton.addClass("favFoods");
+        newButton.attr("data-topic", arr[i]);
+        console.log("data-topic", arr[i]);
+        newButton.addClass("userTopics");
         newButton.text(arr[i]);
-        $("#foodButtons").append(newButton);
+        $("#topicButtons").append(newButton);
     }    
  };
 
