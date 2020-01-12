@@ -10,6 +10,11 @@ p{
 
 .card{
     width: 250px;
+    height: 300px;   
+}
+
+.col{
+    margin: .5em;
 }
 
 .jumbotron{

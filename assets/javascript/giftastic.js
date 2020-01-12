@@ -1,5 +1,5 @@
 //VARIABLES
-var topics = ["trending", "Beyonce", "cats"];
+var topics = ["Trending", "Beyonce", "Cats"];
 var userTopicArr = [];
 createButton(topics);
 
@@ -27,7 +27,7 @@ $(document).on("click", ".userTopics", function () {
     
         //CREATE DIV FOR IMAGE
           var column = $("<div>");
-          column.addClass("col-4");
+          column.addClass("col");
           var card = $("<div>");
           card.addClass("card");
           column.append(card);
@@ -46,7 +46,7 @@ $(document).on("click", ".userTopics", function () {
           var animate = results[i].images.fixed_height.url;
         //CREATE IMAGES
           var topicImage = $('<img>');
-          topicImage.attr("src", animate);
+          topicImage.addClass("card-img-top").attr("src", animate);
           topicImage.attr('data-animate', animate);
           topicImage.attr('data-still', still);
           topicImage.attr('data-state', 'animate');
