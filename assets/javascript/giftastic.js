@@ -1,5 +1,5 @@
 //VARIABLES
-var topics = ["tending", "Beyonce", "cats"];
+var topics = ["trending", "Beyonce", "cats"];
 var userTopicArr = [];
 createButton(topics);
 
